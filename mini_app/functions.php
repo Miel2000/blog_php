@@ -24,8 +24,40 @@ function nav_menu(string $linkClass = ''): string
 {
     return
       nav_item('/index.php', 'Acceuil', $linkClass) .
-      nav_item('/contact.php', 'Contact', $linkClass);
+      nav_item('/contact.php', 'Contact', $linkClass) .
+      nav_item('/jeu.php', 'Jeu', $linkClass);
 };
 
+
+function checkbox (string $name, string $value, array $data):string 
+{
+    $attributes  = '';
+    if(isset($data[$name]) && in_array($value, $data[$name])){
+         $attributes .= 'checked';
+    }
+
+    return <<<HTML
+    <input type='checkbox' name="{$name}[]" value="$value" $attributes>
+HTML;
+}
+
+function radiobox(string $name, string $value, array $data)
+{
+        $attributes  = '';
+    if(isset($data[$name]) && in_array($value, $data[$name])){
+         $attributes .= 'checked';
+    }
+
+    return <<<HTML
+    <input type='radio' name="{$name}[]" value="$value" $attributes>
+HTML;
+}
+;
+
+function dump($variable) {
+    echo '<pre>';
+    var_dump($variable);
+    echo '</pre>';
+}
 
 ?>
