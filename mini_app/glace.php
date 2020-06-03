@@ -75,8 +75,9 @@ $total = 0;
                 <div class="card-title">
                      <h5>Votre glace</h2>
                      <?php if(isset($ingredients)) {
+                          
                          foreach($ingredients as $ingredient ){
-                             echo $ingredient .  ' - '. '<br>';
+                             echo $ingredient .  '  '. '<br>';
                          }
                          echo "<strong> Total</strong> : " . $total . "€";
                      }
@@ -87,7 +88,7 @@ $total = 0;
     </div>
     <div class="col-md-8">
         <h1>Composer votre glace</h1>
-        <form action="/jeu.php" method="GET">
+        <form action="/glace.php" method="GET">
 
         <h3>Parfum</h3>
         <div class="form-group">

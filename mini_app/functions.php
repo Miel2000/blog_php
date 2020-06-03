@@ -25,7 +25,7 @@ function nav_menu(string $linkClass = ''): string
     return
       nav_item('/index.php', 'Acceuil', $linkClass) .
       nav_item('/contact.php', 'Contact', $linkClass) .
-      nav_item('/jeu.php', 'Jeu', $linkClass);
+      nav_item('/glace.php', 'Glace', $linkClass);
 };
 
 
@@ -52,12 +52,74 @@ function radiobox(string $name, string $value, array $data)
     <input type='radio' name="{$name}[]" value="$value" $attributes>
 HTML;
 }
-;
+
+
+function select(string $name, $value, array $options )
+{
+    $html_options = [];
+    foreach($options as $k => $option){
+        $attributes = $k == $value ? 'selected' : '';
+        $html_options[]= "<option value='$k' $attributes >$option</option>";
+    }
+    return "<selected class='form-control' name='$name'>" . implode($html_options);
+}
 
 function dump($variable) {
     echo '<pre>';
     var_dump($variable);
     echo '</pre>';
 }
+
+function creneaux_html(array $creneaux)
+{
+   
+    $phrases = [];
+    foreach($creneaux as $creneau){
+        
+        if (empty($creneau)) {
+            return ' <span style="color:red;">Fermé</span>';
+        }
+
+        $phrases[] = "de <strong> {$creneau[0]} h</strong> à <strong> {$creneau[1]} h</strong>";
+    }
+ 
+
+    return 'Ouvert de '. implode(' et ', $phrases) ;
+ 
+}    
+
+function in_creneaux(int $jour ,int $heure, array $creneaux)
+{
+
+    if($jour > 4) {
+        return false;
+    }
+
+    foreach ($creneaux as $creneau) 
+    {
+      
+
+        $debut = $creneau[0];
+        $fin = $creneau[1];
+
+     if($heure >= $debut && $heure < $fin){
+             return true;
+             } 
+    }
+    return false;   
+        
+ }
+
+
+     
+    
+
+  
+ 
+ // va vérifier si l'heure est dans le tableau creneaux;
+
+
+
+
 
 ?>
